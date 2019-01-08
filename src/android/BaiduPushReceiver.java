@@ -18,10 +18,6 @@ import org.apache.cordova.CallbackContext;
 
 import com.baidu.android.pushservice.PushMessageReceiver;
 
-/**custom start*/
-public static final String FOREGROUND = "foreground";
-public static final String START_IN_BACKGROUND = "cdvStartInBackground";
-/**custom end*/
 /*
  * Push消息处理receiver。请编写您需要的回调函数， 一般来说： onBind是必须的，用来处理startWork返回值；
  *onMessage用来接收透传消息； onSetTags、onDelTags、onListTags是tag相关操作的回调；
@@ -209,12 +205,13 @@ public class BaiduPushReceiver extends PushMessageReceiver {
                 
                 
                 /*custom start*/
+                /**custom start*/
                 Intent intent = new Intent();
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 intent.setClass(context, BaiduPushReceiver.class);
-                intent.putExtra(START_IN_BACKGROUND, true);
-                intent.putExtra(FOREGROUND, false);
+                intent.putExtra("cdvStartInBackground", true);
+                intent.putExtra("foreground", false);
                 intent.putExtra(PushConstants.EXTRA_NOTIFICATION_TITLE, title);
                 intent.putExtra(PushConstants.EXTRA_NOTIFICATION_CONTENT, customContentString);
                 context.startActivity(intent);
