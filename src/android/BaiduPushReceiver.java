@@ -197,19 +197,26 @@ public class BaiduPushReceiver extends PushMessageReceiver {
             JSONObject jsonObject = new JSONObject();
             JSONObject data = new JSONObject();
             if (!TextUtils.isEmpty(title)) {
+                
+                
                 setStringData(data, "title", title);
-                setStringData(data, "description", "abc"+customContentString.get("key2")+description);
+                setStringData(data, "description", "abc"+description);
                 setStringData(data, "customContentString", customContentString);
                 jsonObject.put("data", data);
                 jsonObject.put("type", CB_TYPE.onNotificationArrived);
                 
                 
-                Intent intent = context.getPackageManager().getLaunchIntentForPackage("com.phonegap.helloworld");
-                if (intent != null) {
-                    // We found the activity now start the activity
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    context.startActivity(intent);
-                }
+                if(customContentString.toLowerCase().contains("openapp")){
+                    
+                }else{
+                    Intent intent = context.getPackageManager().getLaunchIntentForPackage("com.phonegap.helloworld");
+                    if (intent != null) {
+                        // We found the activity now start the activity
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        context.startActivity(intent);
+                    }
+                };
+                
                 
                 
                 /*custom start*/
