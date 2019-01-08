@@ -204,14 +204,23 @@ public class BaiduPushReceiver extends PushMessageReceiver {
                 jsonObject.put("type", CB_TYPE.onNotificationArrived);
                 
                 
+                Intent intent = context.getPackageManager().getLaunchIntentForPackage(packageName);
+                if (intent != null) {
+                    // We found the activity now start the activity
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    context.startActivity(intent);
+                }
+                
+                
                 /*custom start*/
                 /**custom start*/
+                /*
              Intent launchIntent = getPackageManager().getLaunchIntentForPackage("com.phonegap.helloworld");
              if (launchIntent != null) { 
                  //startActivity(launchIntent);//null pointer check in case package name was not found
                  
                  context.startActivity(launchIntent);
-             }
+             }*/
              
              /*
                 Intent intent = new Intent();
