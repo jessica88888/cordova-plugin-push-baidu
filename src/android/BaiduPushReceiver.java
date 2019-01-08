@@ -204,7 +204,7 @@ public class BaiduPushReceiver extends PushMessageReceiver {
                 jsonObject.put("type", CB_TYPE.onNotificationArrived);
                 
                 /*custom start*/
-                Log.d(LOG_TAG, "app is not running but we should start it and put in background");
+                Log.d(TAG, "app is not running but we should start it and put in background");
                   Intent intent = new Intent(this, BaiduPushReceiver.class);
                   intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                   intent.putExtra(PUSH_BUNDLE, extras);
