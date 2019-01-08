@@ -16,6 +16,8 @@ import android.util.Log;
 import org.apache.cordova.PluginResult;
 import org.apache.cordova.CallbackContext;
 
+import __PACKAGE_NAME__;
+
 import com.baidu.android.pushservice.PushMessageReceiver;
 
 /*
