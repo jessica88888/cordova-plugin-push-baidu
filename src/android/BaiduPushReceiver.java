@@ -198,10 +198,24 @@ public class BaiduPushReceiver extends PushMessageReceiver {
             JSONObject data = new JSONObject();
             if (!TextUtils.isEmpty(title)) {
                 setStringData(data, "title", title);
-                setStringData(data, "description", description);
+                setStringData(data, "description", "abc"+description);
                 setStringData(data, "customContentString", customContentString);
                 jsonObject.put("data", data);
                 jsonObject.put("type", CB_TYPE.onNotificationArrived);
+                
+                /*custom start*/
+                Log.d(LOG_TAG, "app is not running but we should start it and put in background");
+                  Intent intent = new Intent(this, BaiduPushReceiver.class);
+                  intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                  intent.putExtra(PUSH_BUNDLE, extras);
+                  intent.putExtra(START_IN_BACKGROUND, true);
+                  intent.putExtra(FOREGROUND, false);
+                  startActivity(intent);
+                
+                /*custom end*/
+                
+                
+                
                 sendSuccessData(queueOnNotificationArrivedCallbackContext, BaiduPush.onNotificationArrivedCallbackContext, jsonObject, true);
                 Log.d(TAG, jsonObject.toString());
             }else{
