@@ -16,9 +16,21 @@ import android.util.Log;
 import org.apache.cordova.PluginResult;
 import org.apache.cordova.CallbackContext;
 
-import __PACKAGE_NAME__;
-
 import com.baidu.android.pushservice.PushMessageReceiver;
+
+
+ Class MainActivity;
+    Context context = getApplicationContext();
+    String  packageName = context.getPackageName();
+    Intent  launchIntent = context.getPackageManager().getLaunchIntentForPackage(packageName);
+    String  className = launchIntent.getComponent().getClassName();
+
+    try {
+        //loading the Main Activity to not import it in the plugin
+        MinActivity = Class.forName(className);
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
 
 /*
  * Push消息处理receiver。请编写您需要的回调函数， 一般来说： onBind是必须的，用来处理startWork返回值；
