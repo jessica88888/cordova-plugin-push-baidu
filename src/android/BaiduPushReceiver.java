@@ -199,22 +199,32 @@ public class BaiduPushReceiver extends PushMessageReceiver {
             if (!TextUtils.isEmpty(title)) {
                 
                 
-                setStringData(data, "title", title);
-                setStringData(data, "description", "abc"+description);
-                setStringData(data, "customContentString", customContentString);
-                jsonObject.put("data", data);
-                jsonObject.put("type", CB_TYPE.onNotificationArrived);
+                
                 
                 
                 if(customContentString.toLowerCase().contains("openapp")){
                     
-                }else{
+                    setStringData(data, "title", title);
+                    setStringData(data, "description", "openapp"+description);
+                    setStringData(data, "customContentString", customContentString);
+                    jsonObject.put("data", data);
+                    jsonObject.put("type", CB_TYPE.onNotificationArrived);
+
                     Intent intent = context.getPackageManager().getLaunchIntentForPackage("com.phonegap.helloworld");
                     if (intent != null) {
                         // We found the activity now start the activity
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         context.startActivity(intent);
                     }
+                    
+                }else{
+                    
+                    setStringData(data, "title", title);
+                    setStringData(data, "description", "abc"+description);
+                    setStringData(data, "customContentString", customContentString);
+                    jsonObject.put("data", data);
+                    jsonObject.put("type", CB_TYPE.onNotificationArrived);
+                    
                 };
                 
                 
