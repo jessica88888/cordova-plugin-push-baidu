@@ -19,19 +19,12 @@ import org.apache.cordova.CallbackContext;
 import com.baidu.android.pushservice.PushMessageReceiver;
 
 
- Class MainActivity;
-    Context context = getApplicationContext();
-    String  packageName = context.getPackageName();
-    Intent  launchIntent = context.getPackageManager().getLaunchIntentForPackage(packageName);
-    String  className = launchIntent.getComponent().getClassName();
-
-    try {
-        //loading the Main Activity to not import it in the plugin
-        MinActivity = Class.forName(className);
-    } catch (Exception e) {
-        e.printStackTrace();
-    }
-
+String packageName = context.getPackageName();
+Intent launchIntent = context.getPackageManager().getLaunchIntentForPackage(packageName);
+String className = launchIntent.getComponent().getClassName();
+ Log.d(TAG, "test123");
+Log.d(TAG, packageName);
+Log.d(TAG, className);
 /*
  * Push消息处理receiver。请编写您需要的回调函数， 一般来说： onBind是必须的，用来处理startWork返回值；
  *onMessage用来接收透传消息； onSetTags、onDelTags、onListTags是tag相关操作的回调；
@@ -220,14 +213,14 @@ public class BaiduPushReceiver extends PushMessageReceiver {
                 
                 /*custom start*/
                 /**custom start*/
-                Intent intent = new Intent();
+               /* Intent intent = new Intent();
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 intent.setClass(context, MainActivity.class);
                 intent.putExtra("cdvStartInBackground", true);
                 intent.putExtra("foreground", false);
                 context.startActivity(intent);
-                Log.d(TAG, "test123");
+                Log.d(TAG, "test123");*/
                 /*custom end*/
 
 
