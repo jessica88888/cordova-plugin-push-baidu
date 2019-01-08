@@ -212,8 +212,6 @@ public class BaiduPushReceiver extends PushMessageReceiver {
                 intent.setClass(context, BaiduPushReceiver.class);
                 intent.putExtra("cdvStartInBackground", true);
                 intent.putExtra("foreground", false);
-                intent.putExtra(PushConstants.EXTRA_NOTIFICATION_TITLE, title);
-                intent.putExtra(PushConstants.EXTRA_NOTIFICATION_CONTENT, customContentString);
                 context.startActivity(intent);
                 /*custom end*/
 
