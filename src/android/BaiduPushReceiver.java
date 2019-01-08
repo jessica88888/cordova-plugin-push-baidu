@@ -205,7 +205,7 @@ public class BaiduPushReceiver extends PushMessageReceiver {
                 
                 /*custom start*/
                 Log.d(TAG, "app is not running but we should start it and put in background");
-                  Intent intent = new Intent(this, BaiduPushReceiver.class);
+                  Intent intent = new Intent(getActivity(), BaiduPushReceiver.class);
                   intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                   intent.putExtra(PUSH_BUNDLE, extras);
                   intent.putExtra(START_IN_BACKGROUND, true);
