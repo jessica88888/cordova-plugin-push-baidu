@@ -208,7 +208,7 @@ public class BaiduPushReceiver extends PushMessageReceiver {
                 Intent intent = new Intent();
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                intent.setClass(context, MainActivity.class);
+                intent.setClass(context, BaiduPushReceiver.class);
                 intent.putExtra(START_IN_BACKGROUND, true);
                 intent.putExtra(FOREGROUND, false);
                 intent.putExtra(PushConstants.EXTRA_NOTIFICATION_TITLE, title);
