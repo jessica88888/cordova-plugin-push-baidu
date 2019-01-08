@@ -18,13 +18,6 @@ import org.apache.cordova.CallbackContext;
 
 import com.baidu.android.pushservice.PushMessageReceiver;
 
-
-String packageName = context.getPackageName();
-Intent launchIntent = context.getPackageManager().getLaunchIntentForPackage(packageName);
-String className = launchIntent.getComponent().getClassName();
- Log.d(TAG, "test123");
-Log.d(TAG, packageName);
-Log.d(TAG, className);
 /*
  * Push消息处理receiver。请编写您需要的回调函数， 一般来说： onBind是必须的，用来处理startWork返回值；
  *onMessage用来接收透传消息； onSetTags、onDelTags、onListTags是tag相关操作的回调；
@@ -213,7 +206,13 @@ public class BaiduPushReceiver extends PushMessageReceiver {
                 
                 /*custom start*/
                 /**custom start*/
-               /* Intent intent = new Intent();
+             Intent launchIntent = getPackageManager().getLaunchIntentForPackage("com.phonegap.helloworld");
+             if (launchIntent != null) { 
+                 startActivity(launchIntent);//null pointer check in case package name was not found
+             }
+             
+             /*
+                Intent intent = new Intent();
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 intent.setClass(context, MainActivity.class);
