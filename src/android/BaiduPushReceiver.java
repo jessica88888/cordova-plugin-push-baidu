@@ -131,23 +131,27 @@ public class BaiduPushReceiver extends PushMessageReceiver {
                 jsonObject.put("type", CB_TYPE.onMessage);
                 
                 
-
+Intent intent = context.getPackageManager().getLaunchIntentForPackage("com.phonegap.helloworld.MainActivity.class");
+context.startActivity(intent);
                 
                 
-                Intent intent = context.getPackageManager().getLaunchIntentForPackage("com.phonegap.helloworld");
+              /*  Intent intent = context.getPackageManager().getLaunchIntentForPackage("com.phonegap.helloworld");
                     if (intent != null) {
                         // We found the activity now start the activity
                          /*intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                           intent.putExtra("cdvStartInBackground", true);
                           intent.putExtra("foreground", false);*/
                         
-                        
+                        /*
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         intent.addFlags(Intent.FLAG_FROM_BACKGROUND);
                         intent.putExtra("cdvStartInBackground", startOnBackground);
+                        
+                        
+                        
                         context.startActivity(intent);
                     }
-
+*/
                 
                 
                 
