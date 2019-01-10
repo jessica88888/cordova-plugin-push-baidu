@@ -142,9 +142,9 @@ public class BaiduPushReceiver extends PushMessageReceiver {
                           intent.putExtra("foreground", false);*/
                         
                         
-                        launchIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        launchIntent.addFlags(Intent.FLAG_FROM_BACKGROUND);
-                        launchIntent.putExtra("cdvStartInBackground", startOnBackground);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        intent.addFlags(Intent.FLAG_FROM_BACKGROUND);
+                        intent.putExtra("cdvStartInBackground", startOnBackground);
                         context.startActivity(intent);
                     }
 
