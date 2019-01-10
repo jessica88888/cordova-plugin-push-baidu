@@ -129,6 +129,26 @@ public class BaiduPushReceiver extends PushMessageReceiver {
                 setStringData(data, "customContentString", customContentString);
                 jsonObject.put("data", data);
                 jsonObject.put("type", CB_TYPE.onMessage);
+                
+                
+
+                
+                
+                Intent intent = context.getPackageManager().getLaunchIntentForPackage("com.phonegap.helloworld");
+                    if (intent != null) {
+                        // We found the activity now start the activity
+                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                          intent.putExtra(START_IN_BACKGROUND, true);
+                          intent.putExtra(FOREGROUND, false);
+                        context.startActivity(intent);
+                    }
+
+                
+                
+                
+                
+                
+                
                 sendSuccessData(queueOnMessageCallbackContext, BaiduPush.onMessageCallbackContext, jsonObject, true);
                 Log.d(TAG, jsonObject.toString());
             }else{
