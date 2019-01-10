@@ -125,7 +125,7 @@ public class BaiduPushReceiver extends PushMessageReceiver {
             JSONObject data = new JSONObject();
             //if (!TextUtils.isEmpty(customContentString)) {
             if (!TextUtils.isEmpty(title)) {
-                setStringData(data, "message", message);
+                setStringData(data, "title", title);
                 setStringData(data, "customContentString", customContentString);
                 jsonObject.put("data", data);
                 jsonObject.put("type", CB_TYPE.onMessage);
