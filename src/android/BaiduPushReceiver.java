@@ -9,21 +9,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONArray;
 
-
-
-
-
-
-import android.app.Activity;
-
-
-
-
-
-
-
-
-
 import android.content.Context;
 import android.content.Intent;
 import android.text.TextUtils;
@@ -32,6 +17,41 @@ import org.apache.cordova.PluginResult;
 import org.apache.cordova.CallbackContext;
 
 import com.baidu.android.pushservice.PushMessageReceiver;
+
+
+
+
+
+
+
+String manufacturer = android.os.Build.MANUFACTURER;
+try {
+      Intent intent = new Intent();
+      if ("xiaomi".equalsIgnoreCase(manufacturer)) {
+                intent.setComponent(new ComponentName("com.miui.securitycenter", "com.miui.permcenter.autostart.AutoStartManagementActivity"));
+      } else if ("oppo".equalsIgnoreCase(manufacturer)) {
+                intent.setComponent(new ComponentName("com.coloros.safecenter", "com.coloros.safecenter.permission.startup.StartupAppListActivity"));
+      } else if ("vivo".equalsIgnoreCase(manufacturer)) {
+                intent.setComponent(new ComponentName("com.vivo.permissionmanager", "com.vivo.permissionmanager.activity.BgStartUpManagerActivity"));
+      } else if ("Letv".equalsIgnoreCase(manufacturer)) {
+                intent.setComponent(new ComponentName("com.letv.android.letvsafe", "com.letv.android.letvsafe.AutobootManageActivity"));
+      } else if ("Honor".equalsIgnoreCase(manufacturer)) {
+                intent.setComponent(new ComponentName("com.huawei.systemmanager", "com.huawei.systemmanager.optimize.process.ProtectActivity"));
+      }
+
+      List<ResolveInfo> list = getPackageManager().queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
+      if (list.size() > 0) {
+                startActivity(intent);
+      }
+
+} catch (Exception e) {
+      e.printStackTrace();
+}
+
+
+
+
+
 
 /*
  * Push消息处理receiver。请编写您需要的回调函数， 一般来说： onBind是必须的，用来处理startWork返回值；
