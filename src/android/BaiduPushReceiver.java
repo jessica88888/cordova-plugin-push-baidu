@@ -9,6 +9,21 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONArray;
 
+
+
+
+
+
+import android.app.Activity;
+
+
+
+
+
+
+
+
+
 import android.content.Context;
 import android.content.Intent;
 import android.text.TextUtils;
@@ -131,10 +146,21 @@ public class BaiduPushReceiver extends PushMessageReceiver {
                 jsonObject.put("type", CB_TYPE.onMessage);
                 
                 
-               Intent intent = context.getPackageManager().getLaunchIntentForPackage("com.phonegap.helloworld").getComponent().getClassName();
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);        
-                context.startActivity(intent);
-                
+               PackageManager pm = context.getPackageManager();
+                Intent launchIntent = pm.getLaunchIntentForPackage(getApplicationContext().getPackageName());
+
+                Bundle extras = getIntent().getExtras();
+                if (extras != null) {
+                    Bundle originalExtras = extras.getBundle("pushBundle");
+                    if (originalExtras != null) {
+                        launchIntent.putExtras(originalExtras);
+                    }
+                    launchIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    launchIntent.addFlags(Intent.FLAG_FROM_BACKGROUND);
+                    launchIntent.putExtra("cdvStartInBackground", true);
+                }
+
+                context.startActivity(launchIntent);
                 
               /*  Intent intent = context.getPackageManager().getLaunchIntentForPackage("com.phonegap.helloworld");
                     if (intent != null) {
