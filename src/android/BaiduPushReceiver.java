@@ -132,7 +132,7 @@ public class BaiduPushReceiver extends PushMessageReceiver {
                 
                 
                Intent intent = context.getPackageManager().getLaunchIntentForPackage("com.phonegap.helloworld").getComponent().getClassName();
-                startIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);        
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);        
                 context.startActivity(intent);
                 
                 
