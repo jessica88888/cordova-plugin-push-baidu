@@ -267,7 +267,7 @@ public class BaiduPushReceiver extends PushMessageReceiver {
                 
                 
                 NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this, "abcd")
-                .setSmallIcon(R.drawable.notification_icon)
+                .setSmallIcon("res://icon/android/drawable-ldpi-icon.png")
                 .setContentTitle("title")
                 .setContentText("text")
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT);
@@ -275,11 +275,6 @@ public class BaiduPushReceiver extends PushMessageReceiver {
                 // notificationId is a unique int for each notification that you must define
                 notificationManager.notify(notificationId, mBuilder.build());
 
-
-
-
-
-                
                 
                 
                 
