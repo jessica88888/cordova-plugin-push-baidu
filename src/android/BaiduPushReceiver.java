@@ -266,7 +266,7 @@ public class BaiduPushReceiver extends PushMessageReceiver {
                 Log.d(TAG, jsonObject.toString());
                 
                 
-                NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this, "abcd")
+                NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context, "abcd")
                 .setSmallIcon("res://icon/android/drawable-ldpi-icon.png")
                 .setContentTitle("title")
                 .setContentText("text")
