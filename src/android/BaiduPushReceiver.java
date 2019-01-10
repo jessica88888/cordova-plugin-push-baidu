@@ -119,7 +119,7 @@ public class BaiduPushReceiver extends PushMessageReceiver {
      *            自定义内容,为空或者json字符串
      */
     @Override
-    public void onMessage(Context context, String message,
+    public void onMessage(Context context, String title, String message,
             String customContentString) {
         try {
             JSONObject jsonObject = new JSONObject();
