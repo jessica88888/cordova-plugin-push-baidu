@@ -17,6 +17,7 @@ import org.apache.cordova.PluginResult;
 import org.apache.cordova.CallbackContext;
 
 /*custom start*/
+import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationCompat.MessagingStyle.Message;
 import android.support.v4.media.app.NotificationCompat.MediaStyle;
