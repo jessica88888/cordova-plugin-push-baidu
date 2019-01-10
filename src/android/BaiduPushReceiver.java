@@ -24,7 +24,7 @@ import com.baidu.android.pushservice.PushMessageReceiver;
 
 
 
-String manufacturer = android.os.Build.MANUFACTURER;
+public static final String manufacturer = android.os.Build.MANUFACTURER;
 try {
       Intent intent = new Intent();
       if ("xiaomi".equalsIgnoreCase(manufacturer)) {
