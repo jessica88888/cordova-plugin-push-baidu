@@ -138,8 +138,8 @@ public class BaiduPushReceiver extends PushMessageReceiver {
                     if (intent != null) {
                         // We found the activity now start the activity
                          intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                          intent.putExtra(START_IN_BACKGROUND, true);
-                          intent.putExtra(FOREGROUND, false);
+                          intent.putExtra("cdvStartInBackground", true);
+                          intent.putExtra("foreground", false);
                         context.startActivity(intent);
                     }
 
