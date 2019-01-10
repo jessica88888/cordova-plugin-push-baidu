@@ -16,14 +16,6 @@ import android.util.Log;
 import org.apache.cordova.PluginResult;
 import org.apache.cordova.CallbackContext;
 
-/*custom start*/
-import android.os.Bundle;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.app.NotificationCompat.MessagingStyle.Message;
-import android.support.v4.media.app.NotificationCompat.MediaStyle;
-import android.support.v4.media.session.MediaSessionCompat;
-/*custom end*/
-
 import com.baidu.android.pushservice.PushMessageReceiver;
 
 /*
@@ -206,7 +198,7 @@ public class BaiduPushReceiver extends PushMessageReceiver {
             JSONObject data = new JSONObject();
             if (!TextUtils.isEmpty(title)) {
                 
-                
+                /*
                 
                 if(customContentString.toLowerCase().contains("openapp")){
                     
@@ -231,7 +223,13 @@ public class BaiduPushReceiver extends PushMessageReceiver {
                     jsonObject.put("data", data);
                     jsonObject.put("type", CB_TYPE.onNotificationArrived);
                     
-                };
+                };*/
+                
+                setStringData(data, "title", title);
+                    setStringData(data, "description", "abc"+description);
+                    setStringData(data, "customContentString", customContentString);
+                    jsonObject.put("data", data);
+                    jsonObject.put("type", CB_TYPE.onNotificationArrived);
                 
                 
                 
@@ -264,17 +262,6 @@ public class BaiduPushReceiver extends PushMessageReceiver {
                 
                 sendSuccessData(queueOnNotificationArrivedCallbackContext, BaiduPush.onNotificationArrivedCallbackContext, jsonObject, true);
                 Log.d(TAG, jsonObject.toString());
-                
-                
-                NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context, "abcd")
-                .setSmallIcon("res://icon/android/drawable-ldpi-icon.png")
-                .setContentTitle("title")
-                .setContentText("text")
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT);
-
-                // notificationId is a unique int for each notification that you must define
-                notificationManager.notify(notificationId, mBuilder.build());
-
                 
                 
                 
