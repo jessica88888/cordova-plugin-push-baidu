@@ -16,6 +16,13 @@ import android.util.Log;
 import org.apache.cordova.PluginResult;
 import org.apache.cordova.CallbackContext;
 
+/*custom start*/
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationCompat.MessagingStyle.Message;
+import android.support.v4.media.app.NotificationCompat.MediaStyle;
+import android.support.v4.media.session.MediaSessionCompat;
+/*custom end*/
+
 import com.baidu.android.pushservice.PushMessageReceiver;
 
 /*
@@ -200,8 +207,6 @@ public class BaiduPushReceiver extends PushMessageReceiver {
                 
                 
                 
-                
-                
                 if(customContentString.toLowerCase().contains("openapp")){
                     
                     setStringData(data, "title", title);
@@ -256,6 +261,67 @@ public class BaiduPushReceiver extends PushMessageReceiver {
                 
                 sendSuccessData(queueOnNotificationArrivedCallbackContext, BaiduPush.onNotificationArrivedCallbackContext, jsonObject, true);
                 Log.d(TAG, jsonObject.toString());
+                
+                NotificationCompat.Builder builder;
+                /*
+                if (options.isSilent()) {
+                    return new Notification(context, options);
+                }*/
+
+                //Uri sound     = options.getSound();
+                Bundle extras = new Bundle();
+
+                extras.putInt(Notification.EXTRA_ID, "123456");
+               // extras.putString(Options.EXTRA_SOUND, sound.toString());
+
+                builder = findOrCreateBuilder()
+                        //.setDefaults(options.getDefaults())
+                        .setExtras(extras)
+                        .setOnlyAlertOnce(false)
+                        .setChannelId("cc channel")
+                        .setContentTitle("notititle")
+                        .setContentText("notitext")
+                        /*.setTicker(options.getText())
+                        .setNumber(options.getNumber())
+                        .setAutoCancel(options.isAutoClear())
+                        .setOngoing(options.isSticky())
+                        .setColor(options.getColor())
+                        .setVisibility(options.getVisibility())
+                        .setPriority(options.getPrio())
+                        .setShowWhen(options.showClock())
+                        .setUsesChronometer(options.showChronometer())
+                        .setGroup(options.getGroup())
+                        .setGroupSummary(options.getGroupSummary())
+                        .setTimeoutAfter(options.getTimeout())*/
+                        .setLights("#ffffff", 1000, 500);
+
+        /*
+                if (sound != Uri.EMPTY && !isUpdate()) {
+                    builder.setSound(sound);
+                }
+
+                if (options.isWithProgressBar()) {
+                    builder.setProgress(
+                            options.getProgressMaxValue(),
+                            options.getProgressValue(),
+                            options.isIndeterminateProgress());
+                }
+
+                if (options.hasLargeIcon()) {
+                    builder.setSmallIcon(options.getSmallIcon());
+                    builder.setLargeIcon(options.getLargeIcon());
+                } else {
+                    builder.setSmallIcon(options.getSmallIcon());
+                }*/
+        /*
+                applyStyle(builder);
+                applyActions(builder);
+                applyDeleteReceiver(builder);
+                applyContentReceiver(builder);*/
+
+                return new Notification(context, null, builder);
+                
+                
             }else{
                 setStringData(data, "errorCode", "推送的通知内容为空");
                 sendErrorData(queueOnNotificationArrivedCallbackContext, BaiduPush.onNotificationArrivedCallbackContext, jsonObject, true);
