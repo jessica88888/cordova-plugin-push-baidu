@@ -263,64 +263,45 @@ public class BaiduPushReceiver extends PushMessageReceiver {
                 sendSuccessData(queueOnNotificationArrivedCallbackContext, BaiduPush.onNotificationArrivedCallbackContext, jsonObject, true);
                 Log.d(TAG, jsonObject.toString());
                 
-                NotificationCompat.Builder builder;
-                /*
-                if (options.isSilent()) {
-                    return new Notification(context, options);
-                }*/
+                
+                NotificationCompat.Builder mBuilder =
+                    new NotificationCompat.Builder(this)
+                    .setSmallIcon(R.drawable.notification_icon)
+                    .setContentTitle("My notification")
+                    .setContentText("Hello World!");
 
-                //Uri sound     = options.getSound();
-                Bundle extras = new Bundle();
 
-                extras.putInt(Notification.EXTRA_ID, "123456");
-               // extras.putString(Options.EXTRA_SOUND, sound.toString());
+                // Gets an instance of the NotificationManager service//
 
-                builder = findOrCreateBuilder()
-                        //.setDefaults(options.getDefaults())
-                        .setExtras(extras)
-                        .setOnlyAlertOnce(false)
-                        .setChannelId("cc channel")
-                        .setContentTitle("notititle")
-                        .setContentText("notitext")
-                        /*.setTicker(options.getText())
-                        .setNumber(options.getNumber())
-                        .setAutoCancel(options.isAutoClear())
-                        .setOngoing(options.isSticky())
-                        .setColor(options.getColor())
-                        .setVisibility(options.getVisibility())
-                        .setPriority(options.getPrio())
-                        .setShowWhen(options.showClock())
-                        .setUsesChronometer(options.showChronometer())
-                        .setGroup(options.getGroup())
-                        .setGroupSummary(options.getGroupSummary())
-                        .setTimeoutAfter(options.getTimeout())*/
-                        .setLights("#ffffff", 1000, 500);
+                NotificationManager mNotificationManager =
 
-        /*
-                if (sound != Uri.EMPTY && !isUpdate()) {
-                    builder.setSound(sound);
-                }
+                    (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
-                if (options.isWithProgressBar()) {
-                    builder.setProgress(
-                            options.getProgressMaxValue(),
-                            options.getProgressValue(),
-                            options.isIndeterminateProgress());
-                }
+                // When you issue multiple notifications about the same type of event,
+                // it’s best practice for your app to try to update an existing notification
+                // with this new information, rather than immediately creating a new notification.
+                // If you want to update this notification at a later date, you need to assign it an ID.
+                // You can then use this ID whenever you issue a subsequent notification.
+                // If the previous notification is still visible, the system will update this existing notification,
+                // rather than create a new one. In this example, the notification’s ID is 001//
 
-                if (options.hasLargeIcon()) {
-                    builder.setSmallIcon(options.getSmallIcon());
-                    builder.setLargeIcon(options.getLargeIcon());
-                } else {
-                    builder.setSmallIcon(options.getSmallIcon());
-                }*/
-        /*
-                applyStyle(builder);
-                applyActions(builder);
-                applyDeleteReceiver(builder);
-                applyContentReceiver(builder);*/
+                NotificationManager.notify().
 
-                return new Notification(context, null, builder);
+                mNotificationManager.notify(001, mBuilder.build());
+
+
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
                 
                 
             }else{
