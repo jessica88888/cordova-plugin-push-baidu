@@ -16,6 +16,10 @@ import android.util.Log;
 import org.apache.cordova.PluginResult;
 import org.apache.cordova.CallbackContext;
 
+import android.os.Build;
+import android.support.v4.app.NotificationCompat;
+
+
 import com.baidu.android.pushservice.PushMessageReceiver;
 
 /*
