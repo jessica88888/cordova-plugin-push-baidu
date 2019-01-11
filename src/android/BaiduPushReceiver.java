@@ -267,18 +267,15 @@ public class BaiduPushReceiver extends PushMessageReceiver {
                 .setContentTitle("texttitle")
                 .setContentText("textcontent")
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT);
-
+                
+                
+                
+                 NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+                mNotificationManager.notify(appName, notId, mBuilder.build());
                // Notification notification = mBuilder.getNotification();
                 
                 
                  // Gets an instance of the NotificationManager service//
-
-                
-                NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
-
-// notificationId is a unique int for each notification that you must define
-notificationManager.notify(001, mBuilder.build());
-
 
                 
                 /*
