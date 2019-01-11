@@ -242,10 +242,25 @@ public class BaiduPushReceiver extends PushMessageReceiver {
             JSONObject data = new JSONObject();
             if (!TextUtils.isEmpty(title)) {
                 
+                //String resPath = path.replaceFirst("res://", "");
+/*
+                int resId = getResId(context.getResources(), resPath);
+
+                if (resId == 0) {
+                    resId = getResId(Resources.getSystem(), resPath);
+                }*/
+                /*
+                AssetUtil assets = AssetUtil.getInstance(context);
+                String resPath   = options.optString("icon");
+                int resId        = assets.getResId(resPath);
+
+                if (resId == 0) {
+                    resId = android.R.drawable.screen_background_dark;
+                }*/
                 
                 
                 NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context,"abcd123")
-                .setSmallIcon(getApplicationContext().getApplicationInfo().icon)
+                .setSmallIcon(com.phonegap.helloworld.R.drawable.icon)
                 .setContentTitle("texttitle")
                 .setContentText("textcontent")
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT);
