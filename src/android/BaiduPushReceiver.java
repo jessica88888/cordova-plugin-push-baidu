@@ -1,5 +1,9 @@
 package com.cordova.plugins.push.baidu;
 
+/*** CUSTOM INFO START 
+REPLACE APP NAME: com.phonegap.helloworld
+CUSTOM INFO END ***/
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -15,67 +19,6 @@ import android.text.TextUtils;
 import android.util.Log;
 import org.apache.cordova.PluginResult;
 import org.apache.cordova.CallbackContext;
-
-import android.os.Build;
-/*
-import android.app.Notification;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.app.NotificationCompat.WearableExtender;*/
-
-import android.annotation.SuppressLint;
-import android.app.Notification;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.content.ContentResolver;
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.res.AssetManager;
-import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.Paint;
-import android.graphics.Canvas;
-import android.net.Uri;
-import android.os.Build;
-import android.os.Bundle;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.app.NotificationCompat.WearableExtender;
-import android.support.v4.app.RemoteInput;
-import android.text.Html;
-import android.text.Spanned;
-import android.util.Log;
-
-
-import com.google.firebase.messaging.FirebaseMessagingService;
-import com.google.firebase.messaging.RemoteMessage;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.security.SecureRandom;
-
-
-
-
 
 import com.baidu.android.pushservice.PushMessageReceiver;
 
@@ -186,49 +129,34 @@ public class BaiduPushReceiver extends PushMessageReceiver {
             JSONObject data = new JSONObject();
             //if (!TextUtils.isEmpty(customContentString)) {
             if (!TextUtils.isEmpty(title)) {
-                setStringData(data, "title", title);
+                
+				/*** CUSTOM PART START ***/
+				
+				// Silent Push Notification + Force start app 
+				// If app opening: Push will receive
+				// If app killed: ( Require Background Service + bootstart registration & Permission to Autostart app on some Chinese Phones like Xiaomi )
+				// If "msg_expires" => 0 appear in Payload, this push will never arrives if the phone is unreachable, which mean will be deleted.
+				
+				// USAGE: For message that requires app to open immediately like video call
+				
+                if(customContentString.toLowerCase().contains("openapp")){
+                    
+					// Change app name
+                    Intent intent = context.getPackageManager().getLaunchIntentForPackage("com.phonegap.helloworld");
+                    if (intent != null) {
+                        // We found the activity now start the activity
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        context.startActivity(intent);
+                    }
+                };
+				
+				/*** CUSTOM PART END ***/
+								
+				setStringData(data, "title", title);
                 setStringData(data, "customContentString", customContentString);
                 jsonObject.put("data", data);
                 jsonObject.put("type", CB_TYPE.onMessage);
-                
-                
-              Intent intent = context.getPackageManager().getLaunchIntentForPackage("com.phonegap.helloworld");
-                    if (intent != null) {
-                        // We found the activity now start the activity
-                         /*intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                          intent.putExtra("cdvStartInBackground", true);
-                          intent.putExtra("foreground", false);*/
-                        
-                        
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        intent.addFlags(Intent.FLAG_FROM_BACKGROUND);
-                        
-                        context.startActivity(intent);
-                    }
-                
-              /*  Intent intent = context.getPackageManager().getLaunchIntentForPackage("com.phonegap.helloworld");
-                    if (intent != null) {
-                        // We found the activity now start the activity
-                         /*intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                          intent.putExtra("cdvStartInBackground", true);
-                          intent.putExtra("foreground", false);*/
-                        
-                        /*
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        intent.addFlags(Intent.FLAG_FROM_BACKGROUND);
-                        intent.putExtra("cdvStartInBackground", startOnBackground);
-                        
-                        
-                        
-                        context.startActivity(intent);
-                    }
-*/
-                
-                
-                
-                
-                
-                
+				
                 sendSuccessData(queueOnMessageCallbackContext, BaiduPush.onMessageCallbackContext, jsonObject, true);
                 Log.d(TAG, jsonObject.toString());
             }else{
@@ -297,152 +225,36 @@ public class BaiduPushReceiver extends PushMessageReceiver {
             JSONObject jsonObject = new JSONObject();
             JSONObject data = new JSONObject();
             if (!TextUtils.isEmpty(title)) {
-                
-                //String resPath = path.replaceFirst("res://", "");
-/*
-                int resId = getResId(context.getResources(), resPath);
-
-                if (resId == 0) {
-                    resId = getResId(Resources.getSystem(), resPath);
-                }*/
-                /*
-                AssetUtil assets = AssetUtil.getInstance(context);
-                String resPath   = options.optString("icon");
-                int resId        = assets.getResId(resPath);
-
-                if (resId == 0) {
-                    resId = android.R.drawable.screen_background_dark;
-                }*/
-                
-                
-                NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context,"abcd123")
-                .setSmallIcon(context.getApplicationInfo().icon)
-                .setContentTitle("texttitle")
-                .setContentText("textcontent")
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT);
-                
-                 PendingIntent pendingIntent = context.getPackageManager().getLaunchIntentForPackage("com.phonegap.helloworld");
-
-                
-mBuilder.setContentIntent(pendingIntent);
-                
-
-
-                // Gets an instance of the NotificationManager service
-               /*NotificationManager mNotificationManager =
-                        (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
-
-
-                // Builds the notification and issues it.
-                mNotificationManager.notify(mNotificationId, mBuilder.build());*/
-
-                
-                
-                
-                
-                
-                 NotificationManager mNotificationManager = (NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);
-                mNotificationManager.notify("com.phonegap.helloworld", 12345, mBuilder.build());
-               // Notification notification = mBuilder.getNotification();
-                
-                
-                 // Gets an instance of the NotificationManager service//
-
-                
-                /*
-                
-                Notification.Builder builder = new Notification.Builder(context,"abcd123");
-                builder.setContentIntent(pendingIntent)
-                    .setSmallIcon(R.drawable.ic_launcher)
-                    .setTicker("My Ticker")
-                    .setWhen(System.currentTimeMillis())
-                    .setAutoCancel(true)
-                    .setDefaults(Notification.DEFAULT_VIBRATE | Notification.DEFAULT_SOUND | Notification.FLAG_SHOW_LIGHTS)
-                    .setLights(0xff00ff00, 300, 100)
-                    .setContentTitle("My Title 1")
-                    .setContentText("My Text 1");
-                Notification notification = builder.getNotification();
-
-
-
-                
-                
-                */
-                
-                
-                
-                
-                
-                
-                /*
-                
+				
+                /*** CUSTOM PART START ***/
+				
+				// Push Notification + Force start app 
+				// If app opening: Push will receive
+				// If app killed: ( Require Background Service + bootstart registration & Permission to Autostart app on some Chinese Phones like Xiaomi )
+				
+				// USAGE: For message that requires app to open immediately and show push notification
+				
                 if(customContentString.toLowerCase().contains("openapp")){
                     
-                    setStringData(data, "title", title);
-                    setStringData(data, "description", "openapp"+description);
-                    setStringData(data, "customContentString", customContentString);
-                    jsonObject.put("data", data);
-                    jsonObject.put("type", CB_TYPE.onNotificationArrived);
-
+					// Change app name
                     Intent intent = context.getPackageManager().getLaunchIntentForPackage("com.phonegap.helloworld");
                     if (intent != null) {
                         // We found the activity now start the activity
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         context.startActivity(intent);
                     }
-                    
-                }else{
-                    
-                    setStringData(data, "title", title);
-                    setStringData(data, "description", "abc"+description);
-                    setStringData(data, "customContentString", customContentString);
-                    jsonObject.put("data", data);
-                    jsonObject.put("type", CB_TYPE.onNotificationArrived);
-                    
-                };*/
-                
-                setStringData(data, "title", title);
-                    setStringData(data, "description", "abc"+description);
-                    setStringData(data, "customContentString", customContentString);
-                    jsonObject.put("data", data);
-                    jsonObject.put("type", CB_TYPE.onNotificationArrived);
-                
-                
-                
-                /*custom start*/
-                /**custom start*/
-                /*
-             Intent launchIntent = getPackageManager().getLaunchIntentForPackage("com.phonegap.helloworld");
-             if (launchIntent != null) { 
-                 //startActivity(launchIntent);//null pointer check in case package name was not found
-                 
-                 context.startActivity(launchIntent);
-             }*/
-             
-             /*
-                Intent intent = new Intent();
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                intent.setClass(context, MainActivity.class);
-                intent.putExtra("cdvStartInBackground", true);
-                intent.putExtra("foreground", false);
-                context.startActivity(intent);
-                Log.d(TAG, "test123");*/
-                
-                
-                /*custom end*/
-
-
-                
-                
+                };
+				
+				/*** CUSTOM PART END ***/
+				
+				setStringData(data, "title", title);
+				setStringData(data, "description", description);
+				setStringData(data, "customContentString", customContentString);
+				jsonObject.put("data", data);
+				jsonObject.put("type", CB_TYPE.onNotificationArrived);
                 
                 sendSuccessData(queueOnNotificationArrivedCallbackContext, BaiduPush.onNotificationArrivedCallbackContext, jsonObject, true);
                 Log.d(TAG, jsonObject.toString());
-                
-                
-                
-                
-                
                 
             }else{
                 setStringData(data, "errorCode", "推送的通知内容为空");
