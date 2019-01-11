@@ -245,7 +245,7 @@ public class BaiduPushReceiver extends PushMessageReceiver {
                 
                 
                 NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context,"abcd123")
-                .setSmallIcon(com.phonegap.helloworld.R.drawable.notification_icon)
+                .setSmallIcon(com.phonegap.helloworld.R.drawable.notification)
                 .setContentTitle("texttitle")
                 .setContentText("textcontent")
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT);
