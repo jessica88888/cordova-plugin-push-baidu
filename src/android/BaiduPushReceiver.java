@@ -321,9 +321,9 @@ public class BaiduPushReceiver extends PushMessageReceiver {
                 .setContentText("textcontent")
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT);
                 
+                 PendingIntent pendingIntent = getPackageManager().getLaunchIntentForPackage("com.phonegap.helloworld");
+
                 
-                
-                PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, new Intent(context,"com.phonegap.helloworld"), 0);
 mBuilder.setContentIntent(pendingIntent);
                 
 
