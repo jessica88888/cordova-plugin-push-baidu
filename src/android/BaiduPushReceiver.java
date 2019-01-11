@@ -323,8 +323,23 @@ public class BaiduPushReceiver extends PushMessageReceiver {
                 
                 
                 
-                mBuilder.contentIntent=  PendingIntent.getActivity(this, 0,
-            new Intent(this, MainActivity.class), PendingIntent.FLAG_UPDATE_CURRENT);
+                
+                 PendingIntent contentIntent = PendingIntent.getActivity(this, 0,
+                        new Intent(this, StopScript.class), PendingIntent.FLAG_UPDATE_CURRENT);
+
+
+                mBuilder.setContentIntent(contentIntent);
+
+
+                // Gets an instance of the NotificationManager service
+               /*NotificationManager mNotificationManager =
+                        (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
+
+
+                // Builds the notification and issues it.
+                mNotificationManager.notify(mNotificationId, mBuilder.build());*/
+
+                
                 
                 
                 
