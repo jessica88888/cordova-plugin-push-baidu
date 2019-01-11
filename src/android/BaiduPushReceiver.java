@@ -270,21 +270,13 @@ public class BaiduPushReceiver extends PushMessageReceiver {
                 
                  // Gets an instance of the NotificationManager service//
 
-        NotificationManager mNotificationManager =
+                
+                NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
 
-            (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+// notificationId is a unique int for each notification that you must define
+notificationManager.notify(001, mBuilder.build());
 
-        // When you issue multiple notifications about the same type of event,
-        // it’s best practice for your app to try to update an existing notification
-        // with this new information, rather than immediately creating a new notification.
-        // If you want to update this notification at a later date, you need to assign it an ID.
-        // You can then use this ID whenever you issue a subsequent notification.
-        // If the previous notification is still visible, the system will update this existing notification,
-        // rather than create a new one. In this example, the notification’s ID is 001//
 
-        NotificationManager.notify().
-
-        mNotificationManager.notify(001, mBuilder.build());
                 
                 /*
                 
