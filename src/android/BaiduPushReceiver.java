@@ -323,12 +323,9 @@ public class BaiduPushReceiver extends PushMessageReceiver {
                 
                 
                 
+                PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, new Intent(context,"com.phonegap.helloworld"), 0);
+mBuilder.setContentIntent(pendingIntent);
                 
-                 PendingIntent contentIntent = PendingIntent.getActivity(this, 0,
-                        new Intent(this, StopScript.class), PendingIntent.FLAG_UPDATE_CURRENT);
-
-
-                mBuilder.setContentIntent(contentIntent);
 
 
                 // Gets an instance of the NotificationManager service
