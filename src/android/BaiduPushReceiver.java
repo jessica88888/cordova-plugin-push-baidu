@@ -324,7 +324,7 @@ public class BaiduPushReceiver extends PushMessageReceiver {
                 
                 
                  NotificationManager mNotificationManager = (NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);
-                mNotificationManager.notify(appName, notId, mBuilder.build());
+                mNotificationManager.notify("com.phonegap.helloworld", 12345, mBuilder.build());
                // Notification notification = mBuilder.getNotification();
                 
                 
