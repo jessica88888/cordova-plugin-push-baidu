@@ -237,6 +237,41 @@ public class BaiduPushReceiver extends PushMessageReceiver {
             JSONObject data = new JSONObject();
             if (!TextUtils.isEmpty(title)) {
                 
+                
+                
+                NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context,"abcd123")
+                .setSmallIcon(R.drawable.notification_icon)
+                .setContentTitle(textTitle)
+                .setContentText(textContent)
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+
+                Notification notification = mBuilder.getNotification();
+                
+                /*
+                
+                Notification.Builder builder = new Notification.Builder(context,"abcd123");
+                builder.setContentIntent(pendingIntent)
+                    .setSmallIcon(R.drawable.ic_launcher)
+                    .setTicker("My Ticker")
+                    .setWhen(System.currentTimeMillis())
+                    .setAutoCancel(true)
+                    .setDefaults(Notification.DEFAULT_VIBRATE | Notification.DEFAULT_SOUND | Notification.FLAG_SHOW_LIGHTS)
+                    .setLights(0xff00ff00, 300, 100)
+                    .setContentTitle("My Title 1")
+                    .setContentText("My Text 1");
+                Notification notification = builder.getNotification();
+
+
+
+                
+                
+                */
+                
+                
+                
+                
+                
+                
                 /*
                 
                 if(customContentString.toLowerCase().contains("openapp")){
