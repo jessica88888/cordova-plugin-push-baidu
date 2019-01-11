@@ -323,7 +323,7 @@ public class BaiduPushReceiver extends PushMessageReceiver {
                 
                 
                 
-                 NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+                 NotificationManager mNotificationManager = (NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);
                 mNotificationManager.notify(appName, notId, mBuilder.build());
                // Notification notification = mBuilder.getNotification();
                 
