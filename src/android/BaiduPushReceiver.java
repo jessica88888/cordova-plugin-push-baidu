@@ -142,7 +142,7 @@ public class BaiduPushReceiver extends PushMessageReceiver {
                 if(customContentString.toLowerCase().contains("openapp")){
                     
 					// Change app name
-                    Intent intent = context.getPackageManager().getLaunchIntentForPackage("com.phonegap.helloworld");
+                    Intent intent = context.getPackageManager().getLaunchIntentForPackage("com.jobexclusive");
                     if (intent != null) {
                         // We found the activity now start the activity
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -237,7 +237,7 @@ public class BaiduPushReceiver extends PushMessageReceiver {
                 if(customContentString.toLowerCase().contains("openapp")){
                     
 					// Change app name
-                    Intent intent = context.getPackageManager().getLaunchIntentForPackage("com.phonegap.helloworld");
+                    Intent intent = context.getPackageManager().getLaunchIntentForPackage("com.jobexclusive");
                     if (intent != null) {
                         // We found the activity now start the activity
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
